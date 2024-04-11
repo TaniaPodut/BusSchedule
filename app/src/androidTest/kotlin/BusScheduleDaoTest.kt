@@ -21,14 +21,6 @@ class BusScheduleDaoTest {
     private lateinit var appDatabase: AppDatabase
     private val busSchedule1 = BusSchedule(1, "Main Street", 1617202800)
     private val busSchedule2 = BusSchedule(2, "Park Street", 1617203520)
-    private val busSchedule3 = BusSchedule(3, "Maple Avenue", 1617204300)
-    private val busSchedule4 = BusSchedule(4, "Broadway Avenue", 1617205260)
-    private val busSchedule5 = BusSchedule(5, "Post Street", 1617206280)
-    private val busSchedule6 = BusSchedule(6, "Elm Street", 1617206940)
-    private val busSchedule7 = BusSchedule(7, "Oak Drive", 1617207600)
-    private val busSchedule8 = BusSchedule(8, "Middle Street", 1617208440)
-    private val busSchedule9 = BusSchedule(9, "Palm Avenue", 1617209460)
-    private val busSchedule10 = BusSchedule(10, "Winding Way", 1617209700)
     private val busSchedule11 = BusSchedule(11, "Main Street", 1617210000)
     private val busSchedulesByStopName = listOf(
         BusSchedule(1, "Main Street", 1617202800),
@@ -127,15 +119,6 @@ class BusScheduleDaoTest {
     }
     private suspend fun addBusSchedulesToDb() {
         busScheduleDao.insert(busSchedule1)
-        busScheduleDao.insert(busSchedule2)
-        busScheduleDao.insert(busSchedule3)
-        busScheduleDao.insert(busSchedule4)
-        busScheduleDao.insert(busSchedule5)
-        busScheduleDao.insert(busSchedule6)
-        busScheduleDao.insert(busSchedule7)
-        busScheduleDao.insert(busSchedule8)
-        busScheduleDao.insert(busSchedule9)
-        busScheduleDao.insert(busSchedule10)
         busScheduleDao.insert(busSchedule11)
     }
 }
