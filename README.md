@@ -21,3 +21,25 @@ access the `ScheduleDao` and format data to be display in a list.
 2. Download the sample.
 3. Import the sample into Android Studio.
 4. Build and run the sample.
+
+## My Accessibility Contributions
+
+I prioritized accessibility features to ensure that the app is usable by a wide range of users, including those with disabilities. Here are the specific accessibility enhancements I implemented:
+
+- **Bold Text**: Incorporated bold text where appropriate to improve readability for users with visual impairments.
+
+- **Color Contrast**: Ensured that there is sufficient color contrast between text and background throughout the app. By enhancing color contrast, I aimed to improve readability for users with low vision or color vision deficiencies. This helps prevent text from blending into the background and enhances overall legibility.
+
+- **Bigger Text**: Increased the text size in certain areas of the app to benefit users with visual impairments or those who prefer larger text for readability.
+
+## My Database Contributions
+
+In addition to other development tasks, I expanded the functionality of the database layer by implementing new DAO (Data Access Object) methods. These methods provide additional capabilities for interacting with the database and managing data.
+
+I also integrated these new DAO methods into the ViewModel layer, allowing the ViewModel to access and manipulate data from the database more effectively. By doing so, I improved the overall architecture of the application and enabled smoother data flow between different components.
+
+While these enhancements may not yet be fully utilized in the application's user interface or other components, they lay the groundwork for future feature implementations and contribute to the overall robustness and flexibility of the application.
+
+## My DAO Testing Contributions
+
+In addition to implementing new DAO (Data Access Object) methods, I conducted testing to ensure their reliability and correctness. Specifically, I tested the DAO methods to validate their functionality and interactions with the database.
