@@ -196,7 +196,7 @@ fun BusScheduleScreen(
         ) {
             Text(
                 text = stopNameText,
-                fontSize = 21.sp,
+                fontSize = 19.sp,
                 fontWeight = FontWeight(750),
                 color = Color.Black,
                 fontFamily = FontFamily.Serif,
@@ -204,7 +204,7 @@ fun BusScheduleScreen(
             )
             Text(
                 text = stringResource(R.string.arrival_time),
-                fontSize = 21.sp,
+                fontSize = 19.sp,
                 fontWeight = FontWeight(750),
                 color = Color.Black,
                 fontFamily = FontFamily.Serif,
