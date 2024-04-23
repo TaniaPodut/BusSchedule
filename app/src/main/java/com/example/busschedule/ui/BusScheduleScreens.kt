@@ -93,7 +93,7 @@ fun BusScheduleApp(
                 onBackClick = { onBackHandler() }
             )
         },
-        containerColor = Color(229, 204, 255)
+        containerColor = Color(255,239,179)
     ) { innerPadding ->
         NavHost(
             navController = navController,
