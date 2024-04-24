@@ -15,20 +15,29 @@
  */
 package com.example.busschedule.ui
 
+import android.content.Intent
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.calculateEndPadding
 import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Share
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.outlined.Star
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -43,8 +52,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -93,7 +104,7 @@ fun BusScheduleApp(
                 onBackClick = { onBackHandler() }
             )
         },
-        containerColor = Color(255,239,179)
+        containerColor = Color(249,239,217)
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -161,6 +172,74 @@ fun RouteScheduleScreen(
         stopName = stopName
     )
 }
+@Composable
+fun ShareButton() {
+    val context = LocalContext.current
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Button(onClick = {
+            val shareIntent = Intent().apply {
+                action = Intent.ACTION_SEND
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "Check out this awesome app!")
+            }
+            context.startActivity(Intent.createChooser(shareIntent, "Share via"))
+        },
+            colors = ButtonDefaults.buttonColors(Color(21,96,189))) {
+            Text(text = "Share")
+            Spacer(modifier = Modifier.width(2.dp))
+            Icon(
+                imageVector = Icons.Default.Share,
+                contentDescription = "Share"
+            )
+        }
+    }
+}
+
+@Composable
+fun RatingBar() {
+    // Remember the selected rating
+    val selectedRating = remember { mutableStateOf(0) }
+
+    Column(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Rate your experience",
+            fontSize = 21.sp,
+            fontWeight = FontWeight.SemiBold,
+            fontFamily = FontFamily.Serif,
+            modifier = Modifier.padding(4.dp)
+        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Create star icons based on the selected rating
+            repeat(5) { index ->
+                val isSelected = index < selectedRating.value
+                val icon = if (isSelected) Icons.Filled.Star else Icons.Outlined.Star
+                val color = if (isSelected) Color(252,203,38) else Color.Gray
+                IconButton(
+                    onClick = { selectedRating.value = index + 1 },
+                    modifier = Modifier.size(48.dp)
+                ) {
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = "Star",
+                        tint = color
+                    )
+                }
+            }
+        }
+    }
+}
 
 @Composable
 fun BusScheduleScreen(
@@ -222,6 +301,8 @@ fun BusScheduleScreen(
             busSchedules = busSchedules,
             onScheduleClick = onScheduleClick
         )
+        RatingBar()
+        ShareButton()
     }
 }
 
